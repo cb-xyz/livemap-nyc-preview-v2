@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — livemap.nyc</title>
+  <meta name="description" content="About Live NYC and our partners." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <style>
+    :root{
+      --bg:#f6f7f9; --panel:#ffffff; --text:#0b1220; --muted:#5a667a;
+      --line:rgba(15, 23, 42, .10); --shadow: 0 12px 30px rgba(15, 23, 42, .08);
+      --r:18px; --accent:#0a5bff;
+      --font: ui-sans-serif, system-ui, -apple-system, "SF Pro Display", "SF Pro Text", Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:var(--font); background:var(--bg); color:var(--text); }
+    a{ color:inherit; text-decoration:none; }
+    header{
+      position:fixed; top:0; left:0; right:0; z-index:50;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap{ width:min(980px, calc(100% - 28px)); margin:0 auto; }
+    .bar{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:0; }
+    .brand img{ height:34px; width:auto; display:block; }
+    .brandName{ font-weight:850; letter-spacing:-.2px; white-space:nowrap; }
+    .cta{
+      display:inline-flex; align-items:center; gap:10px; padding:10px 12px; border-radius:999px;
+      background: var(--accent); color:white; font-weight:850; border:0; cursor:pointer; box-shadow: var(--shadow);
+      white-space:nowrap;
+    }
+
+    main{ padding-top:78px; }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin: 18px 0;
+    }
+    h1{ margin:0; font-size: clamp(22px, 2.2vw, 30px); letter-spacing:-.4px; }
+    p{ color:var(--muted); font-weight:600; line-height:1.45; margin:10px 0 0; }
+    .logoBig{ width:min(520px, 100%); display:block; margin: 14px auto 6px; }
+    .partners{ width:100%; border-radius: 18px; border:1px solid var(--line); background:#fff; padding: 12px; }
+    footer{ border-top:1px solid var(--line); padding: 18px 0 24px; color: var(--muted); font-size:12.5px; }
+    .footRow{ display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:center; }
+    .footStrong{ color:var(--text); font-weight:850; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="./" aria-label="Go to homepage">
+        <img src="assets/live-nyc-logo-header.png" alt="Live NYC" />
+        <div class="brandName">livemap.nyc</div>
+      </a>
+      <a class="cta" href="./">Back to maps</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="card">
+      <h1>About Live NYC</h1>
+      <img class="logoBig" src="assets/live-nyc-logo-header.png" alt="Live NYC logo" />
+      <p>
+        Live NYC is NYC’s official map of every place on every block — built to help New Yorkers and visitors discover local businesses, public spaces, and citywide moments in real time.
+      </p>
+      <p>
+        This site is a curated gateway into the Live XYZ map library, with collections organized by country, neighborhood/corridor, and category.
+      </p>
+    </div>
+
+    <div class="card">
+      <h1>Partners</h1>
+      <p>Live NYC is powered by partnerships across NYC government, civic organizations, and local business communities.</p>
+      <img class="partners" src="assets/partner-logos.png" alt="Partner logos" />
+    </div>
+
+    <footer>
+      <div class="footRow">
+        <div><span class="footStrong">Live NYC</span> • Powered by Live XYZ</div>
+        <div>Explore full maps on <span class="footStrong">share.livexyz.com</span>.</div>
+      </div>
+    </footer>
+  </div>
+</main>
+</body>
+</html>
