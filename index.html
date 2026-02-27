@@ -6,6 +6,7 @@
   <title>livemap.nyc — Summer 2026</title>
 
   <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body data-page="home">
@@ -32,30 +33,39 @@
   <div class="container">
     <div class="hero">
       <h1>Live NYC — Summer 2026</h1>
-      <p>Curated maps and guides for the most social summer in New York. Browse share maps, explore by country, and find neighborhood corridors.</p>
+      <p>Curated maps and guides for the most social summer in New York. Explore by country, neighborhood corridors, and what’s happening across the city.</p>
     </div>
 
-    <div id="loadError" class="notice">
-      Could not load the map library. Check that <b>assets/manifest.csv</b> exists and that JS paths are not using leading slashes.
-    </div>
+    <div id="status" class="status">Loading…</div>
 
-    <!-- 1) Share map ABOVE By Country -->
     <div class="section">
       <div class="section-head">
-        <h2>Share Maps</h2>
-        <div class="hint">Cover cards generated from your library + screenshots.</div>
+        <h2>Live Map Preview</h2>
+        <div class="hint">A quick citywide look to set the vibe.</div>
+      </div>
+      <div class="embed-wrap">
+        <iframe src="https://share.livexyz.com/maplist/?theme=dark" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Featured maps</h2>
+        <div class="hint">Pulled from your manifest + screenshot library.</div>
       </div>
       <div id="featuredGrid" class="grid"></div>
     </div>
 
-    <!-- 1.2 Countries back on homepage -->
     <div class="section">
       <div class="section-head">
         <h2>By Country</h2>
         <div class="hint">Food, bars, and places that celebrate the countries of the world.</div>
       </div>
-      <input id="countrySearch" class="search" placeholder="Search countries…"/>
-      <div id="countryGrid" class="grid"></div>
+      <div class="card" style="padding:14px;border-radius:18px">
+        <div style="color:var(--muted);font-size:14px">
+          Go to <a href="countries.html" style="color:var(--blue);font-weight:900">By Country</a> to browse and search.
+        </div>
+      </div>
     </div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
