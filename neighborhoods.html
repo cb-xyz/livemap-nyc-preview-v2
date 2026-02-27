@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Neighborhoods — livemap.nyc</title>
+  <link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
+        <span>livemap.nyc</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="countries.html">By Country</a>
+        <a class="active" href="neighborhoods.html">Neighborhoods</a>
+        <a href="events.html">Events</a>
+        <a href="about.html">About</a>
+      </div>
+      <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Neighborhoods & Corridors</h1>
+      <p>Browse NYC by neighborhood and corridor. Tap any card to open the map in a new tab.</p>
+    </div>
+
+    <div class="section">
+      <input id="q" class="search" placeholder="Search neighborhoods & corridors…"/>
+      <div style="height:12px"></div>
+      <div id="grid" class="grid"></div>
+    </div>
+
+    <div class="footer">© Live XYZ — livemap.nyc</div>
+  </div>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // Starter examples.
+    // Once your screenshot script finishes, we’ll swap "screenshot" to real paths like:
+    // screenshot: "output/neighborhoods/<mapId>__bed-stuy-gateway-bid.png"
+    const items = [
+      {
+        name:"Bed-Stuy Gateway BID",
+        pill:"Corridor",
+        sub:"Bars, restaurants, essentials",
+        url:"https://share.livexyz.com/maplist/5ca3841cf7787b00017c0ddb?theme=dark",
+        screenshot:"output/neighborhoods/5ca3841cf7787b00017c0ddb__bed-stuy-gateway-bid.png"
+      },
+      {
+        name:"47th Street BID",
+        pill:"Corridor",
+        sub:"Midtown corridor",
+        url:"https://share.livexyz.com/maplist/5ca384fbcb5baf0001a11b47?theme=dark",
+        screenshot:"output/neighborhoods/5ca384fbcb5baf0001a11b47__47th-street-bid.png"
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    renderCards(grid, items);
+    wireSearch(document.getElementById("q"), items, (filtered)=> renderCards(grid, filtered));
+  </script>
+</body>
+</html>
