@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>By Country — livemap.nyc</title>
   <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body data-page="countries">
@@ -29,14 +30,11 @@
   <div class="container">
     <div class="hero">
       <h1>By Country</h1>
-      <p>Find maps and guides organized around the countries of the world. <span id="count"></span></p>
+      <p>This page is ready for true country tagging later. For now it’s a searchable gallery driven by the manifest.</p>
     </div>
 
-    <div id="loadError" class="notice">
-      Could not load the map library (assets/manifest.csv).
-    </div>
-
-    <input id="search" class="search" placeholder="Search countries…"/>
+    <div id="status" class="status">Loading…</div>
+    <input id="search" class="search" placeholder="Search maps…"/>
     <div id="grid" class="grid"></div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
