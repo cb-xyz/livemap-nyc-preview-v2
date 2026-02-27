@@ -4,16 +4,14 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>livemap.nyc — Summer 2026</title>
-  <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
-  <script src="assets/site.js" defer></script>
+  <link rel="icon" href="assets/favicon.png" type="image/png"/>
 </head>
-
 <body data-page="home">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="assets/live-nyc-logo.png" alt="Live NYC"/>
+        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
 
@@ -36,7 +34,7 @@
       <p>Curated maps and guides for the most social summer in New York. Explore by country, neighborhood corridors, and what’s happening across the city.</p>
     </div>
 
-    <!-- Share map moved ABOVE By Country -->
+    <!-- Share map ABOVE By Country -->
     <div class="section">
       <div class="section-head">
         <h2>Live Map Preview</h2>
@@ -47,14 +45,14 @@
       </div>
     </div>
 
-    <!-- Countries back on homepage -->
+    <!-- Countries on homepage (driven by manifest) -->
     <div class="section">
       <div class="section-head">
         <h2>By Country</h2>
         <div class="hint">Food, bars, and places that celebrate the countries of the world.</div>
       </div>
       <input id="countrySearch" class="search" placeholder="Search countries…"/>
-      <div id="countries-cards" class="grid"></div>
+      <div id="countryGrid" class="grid"></div>
     </div>
 
     <div class="section">
@@ -64,14 +62,14 @@
       </div>
       <div class="card" style="padding:14px;border-radius:18px">
         <div style="color:var(--muted);font-size:14px">
-          Go to <a href="neighborhoods.html" style="color:var(--blue);font-weight:800">Neighborhoods</a> to browse corridor maps with screenshot cover cards.
+          Browse corridor maps on <a href="neighborhoods.html" style="color:var(--blue);font-weight:800">Neighborhoods</a>.
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      © Live XYZ — livemap.nyc
-    </div>
+    <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
+
+  <script src="assets/site.js"></script>
 </body>
 </html>
