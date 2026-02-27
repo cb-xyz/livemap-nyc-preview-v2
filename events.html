@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Events — livemap.nyc</title>
   <link rel="stylesheet" href="assets/site.css"/>
+  <link rel="icon" href="assets/favicon.png" type="image/png"/>
 </head>
-<body>
+<body data-page="events">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
+
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
@@ -21,6 +23,7 @@
         <a class="active" href="events.html">Events</a>
         <a href="about.html">About</a>
       </div>
+
       <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
     </div>
   </div>
@@ -28,33 +31,12 @@
   <div class="container">
     <div class="hero">
       <h1>Events</h1>
-      <p>
-        We’re curating the best of NYC’s summer programming — from neighborhood moments to citywide celebrations.
-        Check back often as the calendar fills in.
-      </p>
+      <p>Event-related maps and guides (auto-detected from the library — we can refine).</p>
     </div>
 
     <div class="section">
-      <div class="section-head">
-        <h2>Summer 2026 Events Map</h2>
-        <div class="hint">Open the map to browse what’s happening near you.</div>
-      </div>
-
-      <div class="embed-wrap">
-        <iframe
-          src="https://share.livexyz.com/maplist/69a07877a9cc693e1b0211e0?theme=dark"
-          loading="lazy"></iframe>
-      </div>
-
-      <div style="height:12px"></div>
-
-      <div class="card" style="padding:14px;border-radius:18px">
-        <div style="font-weight:900">What we’re building</div>
-        <div style="margin-top:6px;color:var(--muted);line-height:1.45">
-          A living index of summer programming — updated regularly, designed to help New Yorkers and visitors
-          discover events that match their vibe, their neighborhood, and their schedule.
-        </div>
-      </div>
+      <input id="eventsSearch" class="search" placeholder="Search events…"/>
+      <div id="eventsGrid" class="grid"></div>
     </div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
