@@ -4,13 +4,16 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>livemap.nyc — Summer 2026</title>
+  <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
+  <script src="assets/site.js" defer></script>
 </head>
-<body>
+
+<body data-page="home">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
+        <img src="assets/live-nyc-logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
 
@@ -40,7 +43,6 @@
         <div class="hint">A quick citywide look to set the vibe.</div>
       </div>
       <div class="embed-wrap">
-        <!-- Replace this iframe src with the exact embed you want (the one you previously had on Explore) -->
         <iframe src="https://share.livexyz.com/maplist/?theme=dark" loading="lazy"></iframe>
       </div>
     </div>
@@ -52,7 +54,7 @@
         <div class="hint">Food, bars, and places that celebrate the countries of the world.</div>
       </div>
       <input id="countrySearch" class="search" placeholder="Search countries…"/>
-      <div id="countryGrid" class="grid"></div>
+      <div id="countries-cards" class="grid"></div>
     </div>
 
     <div class="section">
@@ -71,23 +73,5 @@
       © Live XYZ — livemap.nyc
     </div>
   </div>
-
-  <script src="assets/site.js"></script>
-  <script>
-    // Minimal “starter” countries list.
-    // Later, we’ll replace this with your spreadsheet-driven + screenshot-driven data.
-    const countryItems = [
-      { name: "Japan", pill: "Country", sub: "Bars, restaurants, shops", url: "countries.html#japan" },
-      { name: "France", pill: "Country", sub: "Classic NYC favorites", url: "countries.html#france" },
-      { name: "Mexico", pill: "Country", sub: "Neighborhood staples + new", url: "countries.html#mexico" },
-      { name: "Ireland", pill: "Country", sub: "Pubs and matchday energy", url: "countries.html#ireland" },
-      { name: "Italy", pill: "Country", sub: "Old-school & modern", url: "countries.html#italy" },
-      { name: "Spain", pill: "Country", sub: "Tapas, wine, late nights", url: "countries.html#spain" }
-    ];
-
-    const grid = document.getElementById("countryGrid");
-    renderCards(grid, countryItems);
-    wireSearch(document.getElementById("countrySearch"), countryItems, (items) => renderCards(grid, items));
-  </script>
 </body>
 </html>
