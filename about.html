@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>About — livemap.nyc</title>
   <link rel="stylesheet" href="assets/site.css"/>
+  <link rel="icon" href="assets/favicon.png" type="image/png"/>
 </head>
-<body>
+<body data-page="about">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
+
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
@@ -21,30 +23,50 @@
         <a href="events.html">Events</a>
         <a class="active" href="about.html">About</a>
       </div>
+
       <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
     </div>
   </div>
 
   <div class="container">
     <div class="hero">
-      <h1>About Live NYC</h1>
-      <p>
-        Live NYC is powered by Live XYZ — a local places technology company supporting NYC with ground-truth data on storefronts,
-        public-facing places, and the public realm. We’re building a living map of New York to help people discover what’s open,
-        what’s happening, and what makes the city feel alive.
-      </p>
+      <h1>About</h1>
+      <p>Live XYZ is building the live map of New York — helping New Yorkers explore, connect, and support the local economy.</p>
     </div>
 
     <div class="section">
-      <div class="card" style="padding:16px;border-radius:18px">
-        <div style="font-weight:950">A living map of the city</div>
-        <div style="margin-top:8px;color:var(--muted);line-height:1.55">
-          This site is a public-facing layer of curated maps and guides — designed for Summer 2026 and built to grow with NYC.
-          If you’re a business, organization, or local partner and want your place represented accurately, we’d love to hear from you.
+      <div class="card" style="padding:18px;border-radius:18px">
+        <div style="display:flex;gap:14px;align-items:center">
+          <img src="assets/Live NYC Logo.png" alt="Live NYC" style="width:84px;height:84px;object-fit:contain;border-radius:16px;background:#0b0f17;padding:10px"/>
+          <div>
+            <div style="font-weight:900;font-size:18px">Live NYC</div>
+            <div style="color:var(--muted);margin-top:6px">
+              Curated maps + guides powered by ground-truth place data.
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div style="margin-top:12px">
-          <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Contact Live XYZ</a>
+    <!-- Partners section restored (add your actual partner logos in assets/partners later) -->
+    <div class="section">
+      <div class="section-head">
+        <h2>Partners</h2>
+        <div class="hint">We work with NYC public sector + civic + community partners.</div>
+      </div>
+
+      <div class="grid">
+        <div class="card" style="padding:14px;border-radius:18px">
+          <div class="card-title">NYC Government</div>
+          <div class="card-sub">Data & collaboration</div>
+        </div>
+        <div class="card" style="padding:14px;border-radius:18px">
+          <div class="card-title">BIDs & Corridors</div>
+          <div class="card-sub">Neighborhood activation</div>
+        </div>
+        <div class="card" style="padding:14px;border-radius:18px">
+          <div class="card-title">Local Businesses</div>
+          <div class="card-sub">Listings & promotion</div>
         </div>
       </div>
     </div>
