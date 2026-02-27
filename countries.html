@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>By Country — livemap.nyc</title>
   <link rel="stylesheet" href="assets/site.css"/>
+  <link rel="icon" href="assets/favicon.png" type="image/png"/>
 </head>
-<body>
+<body data-page="countries">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
         <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
+
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
@@ -21,6 +23,7 @@
         <a href="events.html">Events</a>
         <a href="about.html">About</a>
       </div>
+
       <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
     </div>
   </div>
@@ -28,30 +31,17 @@
   <div class="container">
     <div class="hero">
       <h1>By Country</h1>
-      <p>Curated NYC places by country of origin — designed for the World Cup + global celebrations all summer.</p>
+      <p>Country-themed maps and guides (auto-detected from the library — we can refine).</p>
     </div>
 
     <div class="section">
-      <input id="q" class="search" placeholder="Search countries…"/>
-      <div style="height:12px"></div>
-      <div id="grid" class="grid"></div>
+      <input id="countrySearch" class="search" placeholder="Search countries…"/>
+      <div id="countryGrid" class="grid"></div>
     </div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
 
   <script src="assets/site.js"></script>
-  <script>
-    // Starter – later replace with your spreadsheet data + screenshots
-    const items = [
-      { name:"Japan", pill:"Country", sub:"Food, bars, shops", url:"https://share.livexyz.com/maplist/?theme=dark" },
-      { name:"France", pill:"Country", sub:"Cafés, wine, bistros", url:"https://share.livexyz.com/maplist/?theme=dark" },
-      { name:"Mexico", pill:"Country", sub:"Taquerías, mezcal, markets", url:"https://share.livexyz.com/maplist/?theme=dark" }
-    ];
-
-    const grid = document.getElementById("grid");
-    renderCards(grid, items);
-    wireSearch(document.getElementById("q"), items, (filtered)=> renderCards(grid, filtered));
-  </script>
 </body>
 </html>
