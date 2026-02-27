@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Explore — livemap.nyc</title>
   <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body data-page="explore">
@@ -29,16 +30,13 @@
   <div class="container">
     <div class="hero">
       <h1>Explore</h1>
-      <p>Browse curated maps to explore NYC. <span id="count"></span></p>
+      <p>Browse all maps from the manifest. Screenshot cards are served from GitHub Pages.</p>
     </div>
 
-    <div id="loadError" class="notice">
-      Could not load the map library (assets/manifest.csv).
-    </div>
+    <div id="status" class="status">Loading…</div>
+    <input id="search" class="search" placeholder="Search maps…"/>
 
-    <input id="search" class="search" placeholder="Search explore maps…"/>
     <div id="grid" class="grid"></div>
-
     <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
 
