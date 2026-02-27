@@ -1,791 +1,93 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>livemap.nyc — Summer 2026</title>
-
-  <!-- Favicons (you already uploaded these into /assets) -->
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
-  <style>
-    :root{
-      --bg:#f6f7fb;
-      --panel:#ffffff;
-      --text:#0b1220;
-      --muted:#5b6474;
-      --border:rgba(15, 23, 42, .10);
-      --shadow:0 10px 30px rgba(15, 23, 42, .08);
-      --shadow2:0 6px 20px rgba(15, 23, 42, .06);
-      --radius:18px;
-      --radius2:14px;
-      --blue:#2563eb;
-      --blue2:#1d4ed8;
-      --chip:#eef2ff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:var(--bg);
-      color:var(--text);
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:1180px; margin:0 auto; padding:0 18px;}
-    .header{
-      position:sticky; top:0; z-index:50;
-      background:rgba(246,247,251,.85);
-      backdrop-filter:saturate(1.4) blur(10px);
-      border-bottom:1px solid var(--border);
-    }
-    .headerInner{
-      display:flex; align-items:center; gap:16px;
-      height:68px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width:200px;
-    }
-    .brand img{height:34px; width:auto;}
-    .brand .name{
-      font-weight:800; letter-spacing:-.02em;
-      font-size:16px;
-    }
-    nav{display:flex; align-items:center; gap:14px; flex:1; justify-content:center;}
-    nav a{
-      font-size:14px; color:var(--muted);
-      padding:8px 10px; border-radius:999px;
-      transition:.15s ease;
-    }
-    nav a:hover{background:rgba(37,99,235,.08); color:var(--blue);}
-    nav a.active{
-      background:rgba(37,99,235,.12);
-      color:var(--blue);
-      font-weight:700;
-    }
-    .cta{
-      display:flex; justify-content:flex-end; min-width:220px;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:999px;
-      font-weight:800; font-size:13px;
-      border:1px solid rgba(37,99,235,.25);
-      background:linear-gradient(180deg, rgba(37,99,235,.12), rgba(37,99,235,.06));
-      color:var(--blue2);
-      box-shadow: 0 10px 20px rgba(37,99,235,.12);
-      transition:.15s ease;
-      white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-1px); box-shadow:0 16px 26px rgba(37,99,235,.16);}
-    .btnSolid{
-      border:none;
-      background:linear-gradient(180deg, #2563eb, #1d4ed8);
-      color:#fff;
-      box-shadow:0 14px 28px rgba(37,99,235,.26);
-    }
-    .btnSolid:hover{box-shadow:0 18px 34px rgba(37,99,235,.30);}
-    .page{display:none;}
-    .page.active{display:block;}
-    .hero{
-      margin:22px 0 16px;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:22px;
-    }
-    .hero h1{
-      margin:0 0 8px;
-      font-size:34px;
-      letter-spacing:-.03em;
-      line-height:1.05;
-    }
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.55;
-      max-width:880px;
-    }
-    .heroRow{
-      margin-top:14px;
-      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-    }
-    .searchWrap{
-      position:relative;
-      flex:1;
-      min-width:280px;
-      max-width:680px;
-    }
-    .search{
-      width:100%;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      outline:none;
-      background:#fff;
-      font-size:14px;
-      box-shadow: var(--shadow2);
-    }
-    .search:focus{border-color:rgba(37,99,235,.35); box-shadow:0 0 0 4px rgba(37,99,235,.10);}
-    .searchResults{
-      position:absolute; left:0; right:0;
-      top:48px;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:14px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:none;
-      z-index:10;
-    }
-    .resultItem{
-      padding:10px 12px;
-      display:flex; justify-content:space-between; align-items:center;
-      border-bottom:1px solid rgba(15,23,42,.06);
-      gap:10px;
-      cursor:pointer;
-    }
-    .resultItem:last-child{border-bottom:none;}
-    .resultItem:hover{background:rgba(37,99,235,.06);}
-    .resultLeft{display:flex; flex-direction:column; gap:2px;}
-    .resultTitle{font-weight:800; font-size:13px;}
-    .resultMeta{font-size:12px; color:var(--muted);}
-    .pill{
-      font-size:11px; font-weight:800;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(15,23,42,.05);
-      color:rgba(15,23,42,.75);
-      white-space:nowrap;
-    }
-
-    .sectionTitle{
-      margin:18px 0 10px;
-      display:flex; align-items:flex-end; justify-content:space-between; gap:10px;
-    }
-    .sectionTitle h2{
-      margin:0;
-      font-size:20px;
-      letter-spacing:-.02em;
-    }
-    .sectionTitle .hint{
-      color:var(--muted);
-      font-size:13px;
-      margin:0;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:14px;
-      margin:12px 0 26px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:repeat(2, minmax(0,1fr));}
-      nav{display:none;}
-      .brand{min-width:auto;}
-      .cta{min-width:auto;}
-    }
-    @media (max-width: 620px){
-      .grid{grid-template-columns:repeat(1, minmax(0,1fr));}
-      .hero h1{font-size:28px;}
-    }
-
-    .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius2);
-      box-shadow:var(--shadow2);
-      overflow:hidden;
-      cursor:pointer;
-      transition:.15s ease;
-      position:relative;
-    }
-    .card:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
-    .cardTop{
-      height:150px;
-      background: linear-gradient(180deg, rgba(37,99,235,.10), rgba(37,99,235,.02));
-      position:relative;
-      display:flex; align-items:flex-start; justify-content:flex-start;
-      padding:12px;
-    }
-    .cardTop.hasImg{
-      background-size:cover;
-      background-position:center;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      background:rgba(255,255,255,.92);
-      border:1px solid rgba(15,23,42,.10);
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:12px;
-      box-shadow:0 10px 18px rgba(15,23,42,.08);
-    }
-    .flag{
-      font-size:16px; line-height:1;
-    }
-    .cardBody{
-      padding:12px 12px 14px;
-    }
-    .cardTitle{
-      font-weight:900;
-      letter-spacing:-.02em;
-      margin:0 0 4px;
-      font-size:14px;
-    }
-    .cardMeta{
-      margin:0;
-      color:var(--muted);
-      font-size:12px;
-      display:flex; align-items:center; gap:8px;
-    }
-    .openHint{
-      position:absolute; right:12px; bottom:12px;
-      font-size:12px;
-      color:var(--blue2);
-      font-weight:900;
-      display:flex; align-items:center; gap:6px;
-      opacity:.95;
-    }
-
-    .embedWrap{
-      margin:10px 0 26px;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .embedHeader{
-      padding:12px 14px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      border-bottom:1px solid rgba(15,23,42,.08);
-    }
-    .embedHeader .title{
-      font-weight:900;
-      letter-spacing:-.02em;
-      font-size:14px;
-    }
-    .embedHeader .sub{
-      color:var(--muted);
-      font-size:12px;
-    }
-    .embedBox{
-      height:520px;
-      position:relative;
-    }
-    .embedBox iframe{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      border:0;
-    }
-
-    .copyPanel{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow2);
-      padding:18px;
-      margin:12px 0 26px;
-    }
-    .copyPanel h3{margin:0 0 10px; font-size:18px; letter-spacing:-.02em;}
-    .copyPanel p{margin:0 0 10px; color:var(--muted); line-height:1.6; font-size:14px;}
-    .copyPanel p:last-child{margin-bottom:0;}
-
-    .footer{
-      margin-top:30px;
-      padding:22px 0 28px;
-      border-top:1px solid var(--border);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .footerInner{
-      display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap;
-    }
-    .footer a{color:var(--blue2); font-weight:800;}
-    .mutedLink{color:var(--muted); font-weight:800;}
-  </style>
+  <link rel="stylesheet" href="assets/site.css"/>
 </head>
-
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="headerInner">
-        <a class="brand" href="#home" id="brandHome">
-          <img src="assets/live-nyc-logo-header.png" alt="Live NYC" />
-          <div class="name">livemap.nyc</div>
-        </a>
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
+        <span>livemap.nyc</span>
+      </a>
 
-        <nav id="topNav">
-          <a href="#home" data-page="home" class="active">Home</a>
-          <a href="#explore" data-page="explore">Explore</a>
-          <a href="#country" data-page="country">By Country</a>
-          <a href="#neighborhoods" data-page="neighborhoods">Neighborhoods</a>
-          <a href="#events" data-page="events">Events</a>
-          <a href="about.html" class="mutedLink">About</a>
-        </nav>
+      <div class="nav-links">
+        <a class="active" href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="countries.html">By Country</a>
+        <a href="neighborhoods.html">Neighborhoods</a>
+        <a href="events.html">Events</a>
+        <a href="about.html">About</a>
+      </div>
 
-        <div class="cta">
-          <a class="btn btnSolid" href="https://livexyz.com/summer2026" target="_blank" rel="noopener">
-            Promote Your Storefront (Free)
-          </a>
+      <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Live NYC — Summer 2026</h1>
+      <p>Curated maps and guides for the most social summer in New York. Explore by country, neighborhood corridors, and what’s happening across the city.</p>
+    </div>
+
+    <!-- Share map moved ABOVE By Country -->
+    <div class="section">
+      <div class="section-head">
+        <h2>Live Map Preview</h2>
+        <div class="hint">A quick citywide look to set the vibe.</div>
+      </div>
+      <div class="embed-wrap">
+        <!-- Replace this iframe src with the exact embed you want (the one you previously had on Explore) -->
+        <iframe src="https://share.livexyz.com/maplist/?theme=dark" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- Countries back on homepage -->
+    <div class="section">
+      <div class="section-head">
+        <h2>By Country</h2>
+        <div class="hint">Food, bars, and places that celebrate the countries of the world.</div>
+      </div>
+      <input id="countrySearch" class="search" placeholder="Search countries…"/>
+      <div id="countryGrid" class="grid"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2>Neighborhoods & Corridors</h2>
+        <div class="hint">BIDs, corridors, and neighborhood guides.</div>
+      </div>
+      <div class="card" style="padding:14px;border-radius:18px">
+        <div style="color:var(--muted);font-size:14px">
+          Go to <a href="neighborhoods.html" style="color:var(--blue);font-weight:800">Neighborhoods</a> to browse corridor maps with screenshot cover cards.
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- HOME -->
-  <main class="container">
-    <section class="page active" id="page-home">
-      <div class="hero">
-        <h1>Explore NYC Summer 2026 — live.</h1>
-        <p>
-          A lightweight, shareable library of Live NYC Maps — built to help New Yorkers and visitors discover small businesses
-          and neighborhood corridors across all five boroughs.
-        </p>
+    <div class="footer">
+      © Live XYZ — livemap.nyc
+    </div>
+  </div>
 
-        <div class="heroRow">
-          <div class="searchWrap">
-            <input class="search" id="globalSearch" placeholder="Search maps (countries, categories, neighborhoods, corridors)..." />
-            <div class="searchResults" id="searchResults"></div>
-          </div>
-          <a class="btn" href="#explore">Browse categories</a>
-          <a class="btn" href="#country">Browse countries</a>
-          <a class="btn" href="#neighborhoods">Browse neighborhoods</a>
-        </div>
-      </div>
-
-      <div class="sectionTitle">
-        <h2>By Country</h2>
-        <p class="hint">Tap a card to open the map in a new tab.</p>
-      </div>
-      <div class="grid" id="homeCountries"></div>
-
-      <!-- HOME: CITYWIDE MAP (adds color + energy) -->
-      <div class="embedWrap">
-        <div class="embedHeader">
-          <div>
-            <div class="title">NYC — Citywide Map</div>
-            <div class="sub">A live view of places across the five boroughs.</div>
-          </div>
-          <a class="btn" href="https://share.livexyz.com/" target="_blank" rel="noopener">Open full map</a>
-        </div>
-        <div class="embedBox">
-          <!-- using share URL in iframe; if your embed supports X-Frame, it will render.
-               if not, the “Open full map” button is the fallback -->
-          <iframe
-            title="NYC Citywide Map"
-            loading="lazy"
-            src="https://share.livexyz.com/maplist/?theme=dark&tags=&pinSize=&pinColor=&zoom=10.25&bearing=&lat=40.741598&lng=-73.943009&showSubwayLines="
-          ></iframe>
-        </div>
-      </div>
-
-      <div class="sectionTitle">
-        <h2>Neighborhoods & Corridors</h2>
-        <p class="hint">Explore BID corridors and neighborhood maplists citywide.</p>
-      </div>
-      <div class="grid" id="homeNeighborhoods"></div>
-
-      <div class="sectionTitle">
-        <h2>Summer 2026 Events</h2>
-        <p class="hint">Curated maps for the biggest season in NYC’s history.</p>
-      </div>
-      <div class="copyPanel">
-        <h3>Where NYC shows up in 2026</h3>
-        <p>
-          Summer 2026 brings an unprecedented influx of visitors driven by the FIFA World Cup 2026™ and Sail4th 250 — and
-          a once-in-a-generation opportunity for small businesses across all five boroughs.
-        </p>
-        <p>
-          We’re curating maps that help people find watch parties, neighborhood hubs, and local destinations — so the economic upside
-          reaches beyond the traditional tourist core.
-        </p>
-        <a class="btn" href="#events">Explore event maps</a>
-      </div>
-    </section>
-
-    <!-- EXPLORE (TAGS) -->
-    <section class="page" id="page-explore">
-      <div class="hero">
-        <h1>Explore by category</h1>
-        <p>Browse curated map views across food, nightlife, culture, shopping, parks, and more. Tap any card to open the map in a new tab.</p>
-        <div class="heroRow">
-          <div class="searchWrap">
-            <input class="search" id="exploreSearch" placeholder="Search categories (e.g., pizza, parks, museums, waterfront)..." />
-          </div>
-        </div>
-      </div>
-      <div class="grid" id="exploreGrid"></div>
-    </section>
-
-    <!-- BY COUNTRY -->
-    <section class="page" id="page-country">
-      <div class="hero">
-        <h1>By Country</h1>
-        <p>Discover restaurants and bars connected to participating countries. Tap any card to open the map in a new tab.</p>
-        <div class="heroRow">
-          <div class="searchWrap">
-            <input class="search" id="countrySearch" placeholder="Search countries..." />
-          </div>
-        </div>
-      </div>
-      <div class="grid" id="countryGrid"></div>
-    </section>
-
-    <!-- NEIGHBORHOODS -->
-    <section class="page" id="page-neighborhoods">
-      <div class="hero">
-        <h1>Neighborhoods & Corridors</h1>
-        <p>
-          Browse NYC by neighborhood and corridor. Tap any card to open the map in a new tab.
-          Once you upload previews to <b>assets/map-previews/</b>, cards will automatically display real screenshots.
-        </p>
-        <div class="heroRow">
-          <div class="searchWrap">
-            <input class="search" id="neighborhoodSearch" placeholder="Search neighborhoods & corridors..." />
-          </div>
-        </div>
-      </div>
-      <div class="grid" id="neighborhoodGrid"></div>
-    </section>
-
-    <!-- EVENTS -->
-    <section class="page" id="page-events">
-      <div class="hero">
-        <h1>Events — Summer 2026</h1>
-        <p>
-          A curated map for visitors and New Yorkers looking for watch parties, local hotspots, and neighborhood experiences
-          during the FIFA World Cup 2026™ and Sail4th 250 season.
-        </p>
-      </div>
-
-      <div class="copyPanel">
-        <h3>A summer that reaches every borough</h3>
-        <p>
-          Summer 2026 will be the single largest economic season in New York City’s history. With millions of visitors and
-          Manhattan’s traditional hubs at capacity, the opportunity expands outward — to neighborhood corridors, small storefronts,
-          and local destinations across the city.
-        </p>
-        <p>
-          This map highlights places to gather, celebrate, and explore — with an emphasis on small businesses and authentic local experiences.
-        </p>
-      </div>
-
-      <div class="embedWrap">
-        <div class="embedHeader">
-          <div>
-            <div class="title">Featured Map</div>
-            <div class="sub">Open in a new tab for full interactivity.</div>
-          </div>
-          <a class="btn" href="https://share.livexyz.com/maplist/69a07877a9cc693e1b0211e0" target="_blank" rel="noopener">Open map</a>
-        </div>
-        <div class="embedBox">
-          <iframe
-            title="Summer 2026 Events Map"
-            loading="lazy"
-            src="https://share.livexyz.com/maplist/69a07877a9cc693e1b0211e0"
-          ></iframe>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footerInner">
-        <div>
-          © <span id="year"></span> Live NYC Map. Built for Summer 2026 discovery.
-        </div>
-        <div>
-          Maps open on <a href="https://share.livexyz.com/" target="_blank" rel="noopener">share.livexyz.com</a>.
-          This site is a polished, shareable library of curated map views.
-        </div>
-      </div>
-    </footer>
-  </main>
-
+  <script src="assets/site.js"></script>
   <script>
-    // -------------------------
-    // Data (from your v2 spreadsheet)
-    // -------------------------
-    const DATA = {
-      countries: ${countries_json},
-      neighborhoods: ${neigh_json},
-      tags: ${tags_json},
-      featured: {
-        citywideShareUrl: "https://share.livexyz.com/",
-        eventsShareUrl: "https://share.livexyz.com/maplist/69a07877a9cc693e1b0211e0"
-      }
-    };
-
-    // Country → flag (best-effort; unknowns fall back to 🌐)
-    const FLAG = {
-      "Afghan Restaurant":"🇦🇫",
-      "Argentine Restaurant":"🇦🇷",
-      "Australian Restaurant":"🇦🇺",
-      "Austrian Restaurant":"🇦🇹",
-      "Bangladeshi Restaurant":"🇧🇩",
-      "Brazilian Restaurant":"🇧🇷",
-      "British Restaurant":"🇬🇧",
-      "Chinese Restaurant":"🇨🇳",
-      "Colombian Restaurant":"🇨🇴",
-      "Cuban Restaurant":"🇨🇺",
-      "Dominican Restaurant":"🇩🇴",
-      "Ecuadorian Restaurant":"🇪🇨",
-      "Ethiopian Restaurant":"🇪🇹",
-      "French Restaurant":"🇫🇷",
-      "Georgian Restaurant":"🇬🇪",
-      "German Restaurant":"🇩🇪",
-      "Greek Restaurant":"🇬🇷",
-      "Guyanese Restaurant":"🇬🇾",
-      "Haitian Restaurant":"🇭🇹",
-      "Indian Restaurant":"🇮🇳",
-      "Irish Pub":"🇮🇪",
-      "Irish Restaurant":"🇮🇪",
-      "Israeli Restaurant":"🇮🇱",
-      "Italian Restaurant":"🇮🇹",
-      "Jamaican Restaurant":"🇯🇲",
-      "Japanese Restaurant":"🇯🇵",
-      "Korean BBQ Restaurant":"🇰🇷",
-      "Korean Restaurant":"🇰🇷",
-      "Lebanese Restaurant":"🇱🇧",
-      "Mexican Restaurant":"🇲🇽",
-      "Moroccan Restaurant":"🇲🇦",
-      "Nepalese Restaurant":"🇳🇵",
-      "Pakistani Restaurant":"🇵🇰",
-      "Persian Restaurant":"🇮🇷",
-      "Peruvian Restaurant":"🇵🇪",
-      "Polish Restaurant":"🇵🇱",
-      "Puerto Rican Restaurant":"🇵🇷",
-      "Russian Restaurant":"🇷🇺",
-      "Salvadoran Restaurant":"🇸🇻",
-      "Spanish Restaurant":"🇪🇸",
-      "Taiwanese Restaurant":"🇹🇼",
-      "Thai Restaurant":"🇹🇭",
-      "Trinidad & Tobago Restaurant":"🇹🇹",
-      "Turkish Restaurant":"🇹🇷",
-      "Ukrainian Restaurant":"🇺🇦",
-      "Uzbek Restaurant":"🇺🇿",
-      "Venezuelan Restaurant":"🇻🇪",
-      "Vietnamese Restaurant":"🇻🇳",
-      "Yemeni Restaurant":"🇾🇪"
-    };
-
-    function slugify(str){
-      return String(str || "")
-        .normalize("NFKD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/-+/g, "-")
-        .replace(/(^-|-$)/g, "");
-    }
-
-    function openMap(url){
-      window.open(url, "_blank", "noopener");
-    }
-
-    function cardHTML({topBadge, topIcon, title, meta, url, previewUrl}){
-      const hasImg = !!previewUrl;
-      const bg = hasImg ? `style="background-image:url('${previewUrl}')" ` : "";
-      const imgClass = hasImg ? "cardTop hasImg" : "cardTop";
-      return `
-        <div class="card" data-url="${encodeURI(url)}">
-          <div class="${imgClass}" ${bg}>
-            <div class="badge">
-              ${topIcon ? `<span class="flag">${topIcon}</span>` : ``}
-              <span>${topBadge}</span>
-            </div>
-          </div>
-          <div class="cardBody">
-            <div class="cardTitle">${title}</div>
-            <div class="cardMeta">${meta}</div>
-            <div class="openHint">Open <span aria-hidden="true">↗</span></div>
-          </div>
-        </div>
-      `;
-    }
-
-    function mountCards(el, items){
-      el.innerHTML = items.join("");
-      el.querySelectorAll(".card").forEach(c=>{
-        c.addEventListener("click", ()=>{
-          const url = decodeURI(c.getAttribute("data-url"));
-          openMap(url);
-        });
-      });
-    }
-
-    // -------------------------
-    // Page routing (hash tabs)
-    // -------------------------
-    const pages = ["home","explore","country","neighborhoods","events"];
-    function showPage(name){
-      pages.forEach(p=>{
-        document.getElementById(`page-${p}`).classList.toggle("active", p===name);
-      });
-      document.querySelectorAll("#topNav a[data-page]").forEach(a=>{
-        a.classList.toggle("active", a.dataset.page===name);
-      });
-    }
-    function onRoute(){
-      const h = (location.hash || "#home").replace("#","");
-      if (pages.includes(h)) showPage(h);
-      else showPage("home");
-      window.scrollTo({top:0, behavior:"instant"});
-    }
-    window.addEventListener("hashchange", onRoute);
-    onRoute();
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // -------------------------
-    // Build grids
-    // -------------------------
-    function buildCountries(list){
-      return list.map(c=>{
-        const flag = FLAG[c.name] || "🌐";
-        return cardHTML({
-          topBadge: "Country",
-          topIcon: flag,
-          title: c.name,
-          meta: "Opens in new tab",
-          url: c.shareUrl
-        });
-      });
-    }
-
-    function previewPathForNeighborhood(name){
-      // after you run your screenshot script, upload:
-      // assets/map-previews/<slug>.png
-      return `assets/map-previews/${slugify(name)}.png`;
-    }
-
-    function buildNeighborhoods(list){
-      return list.map(n=>{
-        // will show once file exists (browser will load; if missing it just shows gradient)
-        const preview = previewPathForNeighborhood(n.name);
-        return cardHTML({
-          topBadge: n.kind,
-          topIcon: "",
-          title: n.name,
-          meta: `${n.kind} • Opens in new tab`,
-          url: n.shareUrl,
-          previewUrl: preview
-        });
-      });
-    }
-
-    function buildTags(list){
-      return list.map(t=>{
-        return cardHTML({
-          topBadge: t.category,
-          topIcon: "",
-          title: t.name,
-          meta: "Category map • Opens in new tab",
-          url: t.shareUrl
-        });
-      });
-    }
-
-    // Home: show top slices
-    const homeCountriesEl = document.getElementById("homeCountries");
-    const homeNeighborhoodsEl = document.getElementById("homeNeighborhoods");
-
-    mountCards(homeCountriesEl, buildCountries(DATA.countries.slice(0, 12)));
-    mountCards(homeNeighborhoodsEl, buildNeighborhoods(DATA.neighborhoods.slice(0, 12)));
-
-    // Country page
-    const countryGridEl = document.getElementById("countryGrid");
-    mountCards(countryGridEl, buildCountries(DATA.countries));
-
-    // Explore (Tags) page
-    const exploreGridEl = document.getElementById("exploreGrid");
-    mountCards(exploreGridEl, buildTags(DATA.tags));
-
-    // Neighborhoods page
-    const neighborhoodGridEl = document.getElementById("neighborhoodGrid");
-    mountCards(neighborhoodGridEl, buildNeighborhoods(DATA.neighborhoods));
-
-    // -------------------------
-    // Search (Home: all maps)
-    // -------------------------
-    const searchInput = document.getElementById("globalSearch");
-    const resultsEl = document.getElementById("searchResults");
-
-    const SEARCH_INDEX = [
-      ...DATA.countries.map(x=>({type:"Country", name:x.name, url:x.shareUrl})),
-      ...DATA.tags.map(x=>({type:`Category`, name:x.name, url:x.shareUrl, meta:x.category})),
-      ...DATA.neighborhoods.map(x=>({type:x.kind, name:x.name, url:x.shareUrl}))
+    // Minimal “starter” countries list.
+    // Later, we’ll replace this with your spreadsheet-driven + screenshot-driven data.
+    const countryItems = [
+      { name: "Japan", pill: "Country", sub: "Bars, restaurants, shops", url: "countries.html#japan" },
+      { name: "France", pill: "Country", sub: "Classic NYC favorites", url: "countries.html#france" },
+      { name: "Mexico", pill: "Country", sub: "Neighborhood staples + new", url: "countries.html#mexico" },
+      { name: "Ireland", pill: "Country", sub: "Pubs and matchday energy", url: "countries.html#ireland" },
+      { name: "Italy", pill: "Country", sub: "Old-school & modern", url: "countries.html#italy" },
+      { name: "Spain", pill: "Country", sub: "Tapas, wine, late nights", url: "countries.html#spain" }
     ];
 
-    function renderResults(items){
-      if (!items.length){
-        resultsEl.style.display="none";
-        resultsEl.innerHTML="";
-        return;
-      }
-      resultsEl.style.display="block";
-      resultsEl.innerHTML = items.slice(0, 10).map(i=>`
-        <div class="resultItem" data-url="${encodeURI(i.url)}">
-          <div class="resultLeft">
-            <div class="resultTitle">${i.name}</div>
-            <div class="resultMeta">${i.type}${i.meta ? ` • ${i.meta}` : ""}</div>
-          </div>
-          <div class="pill">Open ↗</div>
-        </div>
-      `).join("");
-      resultsEl.querySelectorAll(".resultItem").forEach(r=>{
-        r.addEventListener("click", ()=>{
-          const url = decodeURI(r.getAttribute("data-url"));
-          openMap(url);
-          resultsEl.style.display="none";
-        });
-      });
-    }
-
-    function doSearch(q){
-      q = String(q||"").trim().toLowerCase();
-      if (q.length < 2){ renderResults([]); return; }
-      const hits = SEARCH_INDEX.filter(i => i.name.toLowerCase().includes(q));
-      renderResults(hits);
-    }
-
-    searchInput.addEventListener("input", (e)=> doSearch(e.target.value));
-    document.addEventListener("click", (e)=>{
-      if (!resultsEl.contains(e.target) && e.target !== searchInput){
-        resultsEl.style.display="none";
-      }
-    });
-
-    // -------------------------
-    // Page-specific search filters
-    // -------------------------
-    const countrySearch = document.getElementById("countrySearch");
-    countrySearch.addEventListener("input", (e)=>{
-      const q = e.target.value.trim().toLowerCase();
-      const filtered = q ? DATA.countries.filter(c=>c.name.toLowerCase().includes(q)) : DATA.countries;
-      mountCards(countryGridEl, buildCountries(filtered));
-    });
-
-    const exploreSearch = document.getElementById("exploreSearch");
-    exploreSearch.addEventListener("input", (e)=>{
-      const q = e.target.value.trim().toLowerCase();
-      const filtered = q ? DATA.tags.filter(t=>(t.name.toLowerCase().includes(q) || t.category.toLowerCase().includes(q))) : DATA.tags;
-      mountCards(exploreGridEl, buildTags(filtered));
-    });
-
-    const neighborhoodSearch = document.getElementById("neighborhoodSearch");
-    neighborhoodSearch.addEventListener("input", (e)=>{
-      const q = e.target.value.trim().toLowerCase();
-      const filtered = q ? DATA.neighborhoods.filter(n=>n.name.toLowerCase().includes(q) || n.kind.toLowerCase().includes(q)) : DATA.neighborhoods;
-      mountCards(neighborhoodGridEl, buildNeighborhoods(filtered));
-    });
+    const grid = document.getElementById("countryGrid");
+    renderCards(grid, countryItems);
+    wireSearch(document.getElementById("countrySearch"), countryItems, (items) => renderCards(grid, items));
   </script>
 </body>
 </html>
