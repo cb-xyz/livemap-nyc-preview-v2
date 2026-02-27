@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Events — livemap.nyc</title>
   <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body data-page="events">
@@ -29,15 +30,20 @@
   <div class="container">
     <div class="hero">
       <h1>Events</h1>
-      <p>Maps related to citywide events and seasonal programming. <span id="count"></span></p>
+      <p>We’ll wire a real summer events index here next. For now: explore event-oriented maps.</p>
     </div>
 
-    <div id="loadError" class="notice">
-      Could not load the map library (assets/manifest.csv).
-    </div>
+    <div id="status" class="status">Loading…</div>
 
-    <input id="search" class="search" placeholder="Search events…"/>
-    <div id="grid" class="grid"></div>
+    <div class="section">
+      <div class="section-head">
+        <h2>Live event maps</h2>
+        <div class="hint">Embed / link out to Live XYZ maps.</div>
+      </div>
+      <div class="embed-wrap">
+        <iframe src="https://share.livexyz.com/maplist/?theme=dark" loading="lazy"></iframe>
+      </div>
+    </div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
