@@ -1,224 +1,57 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>About — livemap.nyc</title>
-
-  <link rel="icon" href="./assets/favicon.ico" />
-  <meta name="theme-color" content="#ffffff" />
-  <style>
-    :root{
-      --bg:#f6f7f9;
-      --card:#ffffff;
-      --text:#0b1220;
-      --muted:#5b6577;
-      --border:rgba(15, 23, 42, .10);
-      --shadow:0 12px 30px rgba(15,23,42,.08);
-      --radius:18px;
-      --max:1120px;
-      --blue:#2563eb;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:linear-gradient(180deg,#ffffff 0%, var(--bg) 40%, #ffffff 100%);
-      color:var(--text);
-    }
-
-    /* Header */
-    .header{
-      position:sticky; top:0; z-index:20;
-      background:rgba(255,255,255,.92);
-      backdrop-filter:saturate(180%) blur(10px);
-      border-bottom:1px solid var(--border);
-    }
-    .header-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:12px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      text-decoration:none; color:inherit;
-      font-weight:700;
-      letter-spacing:-.02em;
-    }
-    .brand img{
-      width:28px; height:28px; object-fit:contain;
-      border-radius:6px;
-    }
-    nav{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
-      justify-content:center;
-    }
-    .navlink{
-      text-decoration:none;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      font-weight:600;
-      font-size:14px;
-    }
-    .navlink:hover{ background:rgba(37,99,235,.08); color:var(--text); }
-    .navlink.active{ background:rgba(37,99,235,.12); color:var(--text); }
-
-    .cta{
-      text-decoration:none;
-      background:var(--blue);
-      color:#fff;
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:14px;
-      box-shadow:0 12px 24px rgba(37,99,235,.22);
-      white-space:nowrap;
-    }
-    .cta:hover{ filter:brightness(.98); }
-
-    /* Layout */
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:26px 18px 40px;
-    }
-    .hero{
-      background:var(--card);
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
-      border-radius:var(--radius);
-      padding:26px 22px;
-    }
-    .logo-big{
-      width:min(420px, 80vw);
-      height:auto;
-      display:block;
-      margin:6px auto 18px;
-    }
-    h1{
-      margin:0 0 8px;
-      font-size:34px;
-      line-height:1.15;
-      letter-spacing:-.03em;
-      text-align:center;
-    }
-    .sub{
-      margin:0 auto;
-      max-width:820px;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.55;
-      text-align:center;
-    }
-
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    @media (min-width: 900px){
-      .grid{ grid-template-columns: 1.15fr .85fr; }
-    }
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px;
-    }
-    .card h2{
-      margin:0 0 10px;
-      font-size:18px;
-      letter-spacing:-.02em;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-      font-size:15px;
-    }
-    .partner-img{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#fff;
-    }
-
-    footer{
-      margin-top:18px;
-      color:var(--muted);
-      font-size:12.5px;
-      text-align:center;
-      padding:18px 10px;
-    }
-    footer a{ color:var(--muted); }
-  </style>
+  <link rel="stylesheet" href="assets/site.css"/>
 </head>
-
 <body>
-  <header class="header">
-    <div class="header-inner">
-      <!-- 0.1 Make livemap.nyc clickable back to homepage -->
-      <a class="brand" href="./index.html" aria-label="Go to homepage">
-        <img src="./assets/live-nyc-logo-header.png" alt="Live NYC" />
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
-
-      <nav aria-label="Primary">
-        <a class="navlink" href="./index.html">Home</a>
-        <a class="navlink" href="./index.html#explore">Explore</a>
-        <a class="navlink" href="./index.html#country">By Country</a>
-        <a class="navlink" href="./index.html#neighborhoods">Neighborhoods</a>
-        <a class="navlink" href="./index.html#events">Events</a>
-        <a class="navlink active" href="./about.html">About</a>
-      </nav>
-
-      <a class="cta" href="https://livexyz.com/summer2026" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="countries.html">By Country</a>
+        <a href="neighborhoods.html">Neighborhoods</a>
+        <a href="events.html">Events</a>
+        <a class="active" href="about.html">About</a>
+      </div>
+      <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
     </div>
-  </header>
+  </div>
 
-  <main class="wrap">
-    <section class="hero">
-      <!-- High-res logo (NOT favicon) -->
-      <img class="logo-big" src="./assets/live-nyc-logo-header.png" alt="Live NYC" />
-      <h1>About Live NYC Map</h1>
-      <p class="sub">
-        Live NYC Map is a curated library of maps and guides built on Live XYZ’s citywide data.
-        Our goal is simple: help New Yorkers and visitors discover great places across all five boroughs —
-        and make it easier to explore small businesses, neighborhoods, and events in real time.
+  <div class="container">
+    <div class="hero">
+      <h1>About Live NYC</h1>
+      <p>
+        Live NYC is powered by Live XYZ — a local places technology company supporting NYC with ground-truth data on storefronts,
+        public-facing places, and the public realm. We’re building a living map of New York to help people discover what’s open,
+        what’s happening, and what makes the city feel alive.
       </p>
-    </section>
+    </div>
 
-    <section class="grid" aria-label="About details">
-      <div class="card">
-        <h2>What you’ll find here</h2>
-        <p>
-          A fast, lightweight way to browse Live XYZ’s map library — by country, neighborhood/corridor, and special events.
-          Each map opens in a new tab so you can keep browsing the library while exploring.
-        </p>
+    <div class="section">
+      <div class="card" style="padding:16px;border-radius:18px">
+        <div style="font-weight:950">A living map of the city</div>
+        <div style="margin-top:8px;color:var(--muted);line-height:1.55">
+          This site is a public-facing layer of curated maps and guides — designed for Summer 2026 and built to grow with NYC.
+          If you’re a business, organization, or local partner and want your place represented accurately, we’d love to hear from you.
+        </div>
+
+        <div style="margin-top:12px">
+          <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Contact Live XYZ</a>
+        </div>
       </div>
+    </div>
 
-      <div class="card">
-        <h2>Partners</h2>
-        <p style="margin-bottom:12px;">
-          Live XYZ works with public and civic partners across New York City to support local discovery and small business visibility.
-        </p>
-        <img class="partner-img" src="./assets/partner-logos.png" alt="Partner logos" />
-      </div>
-    </section>
+    <div class="footer">© Live XYZ — livemap.nyc</div>
+  </div>
 
-    <footer>
-      Maps open on share.livexyz.com. This site is a lightweight, shareable library for exploring Live NYC Map content.
-    </footer>
-  </main>
+  <script src="assets/site.js"></script>
 </body>
 </html>
