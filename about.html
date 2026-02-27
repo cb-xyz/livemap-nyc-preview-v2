@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>About — livemap.nyc</title>
   <link rel="icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
   <link rel="stylesheet" href="assets/site.css"/>
 </head>
-<body>
+<body data-page="about">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
@@ -29,32 +30,33 @@
   <div class="container">
     <div class="hero">
       <h1>About</h1>
-      <p>Live NYC is a public-facing map experience powered by Live XYZ’s ground-truth view of the local economy.</p>
+      <p>Live XYZ powers a living map of NYC’s storefront economy and public realm — with partners across city government.</p>
     </div>
+
+    <div id="status" class="status">Loading…</div>
 
     <div class="section">
       <div class="section-head">
         <h2>Live NYC</h2>
-        <div class="hint">High-resolution logo (no fuzz).</div>
+        <div class="hint">Brand + partners</div>
       </div>
-      <div class="card" style="padding:16px">
-        <img src="assets/live-nyc-logo.png" alt="Live NYC Logo" style="width:100%;max-width:520px;display:block"/>
+
+      <div class="card" style="padding:14px">
+        <img class="responsive" src="assets/live-nyc-logo.png" alt="Live NYC Logo" style="max-width:340px" />
+        <div class="hr"></div>
+        <div style="color:rgba(234,240,255,.75); line-height:1.55">
+          Live XYZ maintains ground-truth data on storefronts and public-facing places across NYC. livemap.nyc is the public-facing home for curated summer maps and guides.
+        </div>
+
+        <div class="hr"></div>
+        <div style="font-weight:900; margin-bottom:10px">Partners</div>
+        <img class="responsive" src="assets/partner-logos.png" alt="Partner logos" />
       </div>
     </div>
-
-    <div class="section">
-      <div class="section-head">
-        <h2>Partners</h2>
-        <div class="hint">Our NYC partnership ecosystem.</div>
-      </div>
-      <div class="card" style="padding:16px">
-        <img src="assets/partner-logos.png" alt="Partners" style="width:100%;max-width:920px;display:block"/>
-      </div>
-    </div>
-
-    <!-- Removed "What you'll find here" per your request -->
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
+
+  <script src="assets/site.js"></script>
 </body>
 </html>
