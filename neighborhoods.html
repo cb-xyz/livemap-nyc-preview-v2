@@ -4,17 +4,16 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Neighborhoods — livemap.nyc</title>
+  <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="assets/site.css"/>
-  <link rel="icon" href="assets/favicon.png" type="image/png"/>
 </head>
 <body data-page="neighborhoods">
   <div class="nav">
     <div class="container nav-inner">
       <a class="brand" href="index.html">
-        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
+        <img src="assets/live-nyc-logo-header.png" alt="Live NYC"/>
         <span>livemap.nyc</span>
       </a>
-
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
@@ -23,7 +22,6 @@
         <a href="events.html">Events</a>
         <a href="about.html">About</a>
       </div>
-
       <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
     </div>
   </div>
@@ -31,13 +29,15 @@
   <div class="container">
     <div class="hero">
       <h1>Neighborhoods & Corridors</h1>
-      <p>BIDs, corridors, and neighborhood guides (auto-detected from the library — we can refine).</p>
+      <p>BIDs, corridors, and neighborhood guides. <span id="count"></span></p>
     </div>
 
-    <div class="section">
-      <input id="hoodSearch" class="search" placeholder="Search neighborhoods…"/>
-      <div id="hoodGrid" class="grid"></div>
+    <div id="loadError" class="notice">
+      Could not load the map library (assets/manifest.csv).
     </div>
+
+    <input id="search" class="search" placeholder="Search neighborhoods…"/>
+    <div id="grid" class="grid"></div>
 
     <div class="footer">© Live XYZ — livemap.nyc</div>
   </div>
