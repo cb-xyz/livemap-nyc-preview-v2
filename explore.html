@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Explore — livemap.nyc</title>
+  <link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/Live NYC Logo.png" alt="Live NYC"/>
+        <span>livemap.nyc</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="active" href="explore.html">Explore</a>
+        <a href="countries.html">By Country</a>
+        <a href="neighborhoods.html">Neighborhoods</a>
+        <a href="events.html">Events</a>
+        <a href="about.html">About</a>
+      </div>
+      <a class="cta" href="https://livexyz.com" target="_blank" rel="noopener">Promote Your Storefront (Free)</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Explore</h1>
+      <p>Browse all curated maps and guides. Tap any card to open the map in a new tab.</p>
+    </div>
+
+    <div class="section">
+      <input id="q" class="search" placeholder="Search maps… (bars, restaurants, soccer, shopping, etc.)"/>
+      <div style="height:12px"></div>
+      <div id="grid" class="grid"></div>
+    </div>
+
+    <div class="footer">© Live XYZ — livemap.nyc</div>
+  </div>
+
+  <script src="assets/site.js"></script>
+  <script>
+    // Starter Explore cards (replace with spreadsheet-driven later)
+    const items = [
+      { name: "NYC — Citywide", pill:"Explore", sub:"Start here", url:"https://share.livexyz.com/maplist/?theme=dark" },
+      { name: "Sporting Goods", pill:"Explore", sub:"Gear up for summer", url:"https://share.livexyz.com/maplist/?theme=dark" },
+      { name: "Bars & Restaurants", pill:"Explore", sub:"Where NYC meets", url:"https://share.livexyz.com/maplist/?theme=dark" }
+    ];
+
+    const grid = document.getElementById("grid");
+    renderCards(grid, items);
+    wireSearch(document.getElementById("q"), items, (filtered)=> renderCards(grid, filtered));
+  </script>
+</body>
+</html>
